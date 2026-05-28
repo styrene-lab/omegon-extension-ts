@@ -89,7 +89,7 @@
       "reuse_key",
       "title"
     ],
-    "terminal_create_placement_values": ["default", "side_pane", "bottom_pane", "new_tab"],
+    "terminal_create_placement_values": ["default", "side_pane", "bottom_pane", "new_tab", "background_session"],
     "terminal_create_result_fields": [
       "actual_placement",
       "backend",
