@@ -1,6 +1,15 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { Extension, RpcError, ErrorCode } from "../src/index.js";
+import {
+  Extension,
+  RpcError,
+  ErrorCode,
+  METHOD_INITIALIZE,
+  METHOD_GET_TOOLS,
+  METHOD_EXECUTE_TOOL,
+  SDK_CONTRACT_VERSION,
+  PROTOCOL_VERSION,
+} from "../src/index.js";
 
 function createTestExtension(): Extension {
   const ext = new Extension("test-ext", "0.1.0");
@@ -119,9 +128,19 @@ describe("Tool Execution", () => {
 });
 
 describe("RPC Dispatch", () => {
+  it("handles initialize with contract version", async () => {
+    const ext = createTestExtension();
+    const result = (await ext.handleRpc(METHOD_INITIALIZE, {})) as {
+      protocol_version: number;
+      extension_info: { sdk_version: string };
+    };
+    assert.equal(result.protocol_version, PROTOCOL_VERSION);
+    assert.equal(result.extension_info.sdk_version, SDK_CONTRACT_VERSION);
+  });
+
   it("handles get_tools", async () => {
     const ext = createTestExtension();
-    const result = (await ext.handleRpc("get_tools", {})) as any[];
+    const result = (await ext.handleRpc(METHOD_GET_TOOLS, {})) as any[];
     assert.ok(Array.isArray(result));
     assert.equal(result.length, 4);
   });
@@ -138,7 +157,7 @@ describe("RPC Dispatch", () => {
 
   it("handles execute_tool", async () => {
     const ext = createTestExtension();
-    const result = (await ext.handleRpc("execute_tool", {
+    const result = (await ext.handleRpc(METHOD_EXECUTE_TOOL, {
       name: "hello",
       args: { name: "Bob" },
     })) as any;
@@ -158,7 +177,8 @@ describe("RpcError", () => {
   it("serializes to JSON", () => {
     const err = RpcError.methodNotFound("foo");
     const json = err.toJSON();
-    assert.equal(json.code, "MethodNotFound");
+    assert.equal(json.code, ErrorCode.MethodNotFound);
+    assert.equal(json.label, "MethodNotFound");
     assert.ok(json.message.includes("foo"));
     assert.equal(json.data, null);
   });

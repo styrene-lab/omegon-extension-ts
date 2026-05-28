@@ -13,6 +13,7 @@
   },
   "files": [
     "dist",
+    "src/schema/sdk-contract.json",
     "README.md",
     "LICENSE"
   ],

@@ -21,19 +21,7 @@
  *
  * @module
  */
-
 export * from "./contract.js";
 export { Extension, HostProxy, serve, serveV2 } from "./extension.js";
-export {
-  ErrorCode,
-  RpcError,
-  errorLabel,
-  type Capabilities,
-  type ContentBlock,
-  type ToolDefinition,
-  type ToolResult,
-  type ToolHandler,
-  type RpcRequest,
-  type RpcResponse,
-  type RpcNotification,
-} from "./types.js";
+export { ErrorCode, RpcError, errorLabel, type Capabilities, type ContentBlock, type ToolDefinition, type ToolResult, type ToolHandler, type RpcRequest, type RpcResponse, type RpcNotification, } from "./types.js";
+//# sourceMappingURL=index.d.ts.map

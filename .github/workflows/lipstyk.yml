@@ -1,0 +1,14 @@
+name: lipstyk
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lipstyk:
+    uses: styrene-lab/lipstyk/.github/workflows/lipstyk.yml@main
+    with:
+      paths: "src/"
+      threshold: 50

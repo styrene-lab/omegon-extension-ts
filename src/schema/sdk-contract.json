@@ -1,0 +1,100 @@
+{
+  "sdk_contract_version": "0.24",
+  "protocol_version": 2,
+  "jsonrpc_version": "2.0",
+  "methods": {
+    "host_to_extension": [
+      "initialize",
+      "get_tools",
+      "tools/list",
+      "execute_tool",
+      "tools/call",
+      "bootstrap_secrets"
+    ],
+    "extension_to_host": [
+      "actions/execute",
+      "notifications/tools/progress",
+      "notifications/tools/list_changed",
+      "notifications/widgets/updated"
+    ]
+  },
+  "error_codes": {
+    "ParseError": -32700,
+    "InvalidRequest": -32600,
+    "MethodNotFound": -32601,
+    "InvalidParams": -32602,
+    "InternalError": -32603,
+    "Timeout": -32000,
+    "NotImplemented": -32001,
+    "ManifestError": -32002,
+    "VersionMismatch": -32003,
+    "Cancelled": -32004,
+    "ResourceNotFound": -32005,
+    "SamplingDenied": -32006
+  },
+  "capabilities": {
+    "fields": [
+      "tools",
+      "widgets",
+      "mind",
+      "vox",
+      "resources",
+      "prompts",
+      "sampling",
+      "elicitation",
+      "streaming",
+      "voice",
+      "host_actions",
+      "host_action_execution"
+    ],
+    "default_true": ["tools"],
+    "default_false": [
+      "widgets",
+      "mind",
+      "vox",
+      "resources",
+      "prompts",
+      "sampling",
+      "elicitation",
+      "streaming",
+      "voice",
+      "host_actions",
+      "host_action_execution"
+    ]
+  },
+  "initialize": {
+    "params_required": ["protocol_version", "host_info", "capabilities"],
+    "result_required": ["protocol_version", "extension_info", "capabilities", "tools"],
+    "extension_info_required": ["name", "version", "sdk_version"]
+  },
+  "host_actions": {
+    "types": ["terminal.create@1"],
+    "host_action_fields": ["id", "params", "type"],
+    "host_action_execution_values": ["manual", "auto_if_allowed"],
+    "host_action_outcome_fields": ["action_id", "result", "status"],
+    "host_action_status_values": [
+      "completed",
+      "needs_approval",
+      "denied",
+      "unsupported",
+      "invalid",
+      "failed"
+    ],
+    "terminal_create_params_fields": [
+      "args",
+      "command",
+      "cwd",
+      "env",
+      "placement",
+      "reuse_key",
+      "title"
+    ],
+    "terminal_create_placement_values": ["default", "side_pane", "bottom_pane", "new_tab"],
+    "terminal_create_result_fields": [
+      "actual_placement",
+      "backend",
+      "terminal_id",
+      "warnings"
+    ]
+  }
+}
