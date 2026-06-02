@@ -23,6 +23,7 @@
  */
 
 export * from "./contract.js";
+export * from "./host-actions.js";
 export { Extension, HostProxy, serve, serveV2 } from "./extension.js";
 export {
   ErrorCode,

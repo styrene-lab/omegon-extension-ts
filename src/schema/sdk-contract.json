@@ -47,7 +47,9 @@
       "host_actions",
       "host_action_execution"
     ],
-    "default_true": ["tools"],
+    "default_true": [
+      "tools"
+    ],
     "default_false": [
       "widgets",
       "mind",
@@ -63,15 +65,43 @@
     ]
   },
   "initialize": {
-    "params_required": ["protocol_version", "host_info", "capabilities"],
-    "result_required": ["protocol_version", "extension_info", "capabilities", "tools"],
-    "extension_info_required": ["name", "version", "sdk_version"]
+    "params_required": [
+      "protocol_version",
+      "host_info",
+      "capabilities"
+    ],
+    "result_required": [
+      "protocol_version",
+      "extension_info",
+      "capabilities",
+      "tools"
+    ],
+    "extension_info_required": [
+      "name",
+      "version",
+      "sdk_version"
+    ]
   },
   "host_actions": {
-    "types": ["terminal.create@1"],
-    "host_action_fields": ["id", "params", "type"],
-    "host_action_execution_values": ["manual", "auto_if_allowed"],
-    "host_action_outcome_fields": ["action_id", "result", "status"],
+    "types": [
+      "terminal.create@1",
+      "package.install@1",
+      "resource.open@1"
+    ],
+    "host_action_fields": [
+      "id",
+      "params",
+      "type"
+    ],
+    "host_action_execution_values": [
+      "manual",
+      "auto_if_allowed"
+    ],
+    "host_action_outcome_fields": [
+      "action_id",
+      "result",
+      "status"
+    ],
     "host_action_status_values": [
       "completed",
       "needs_approval",
@@ -89,11 +119,86 @@
       "reuse_key",
       "title"
     ],
-    "terminal_create_placement_values": ["default", "side_pane", "bottom_pane", "new_tab", "background_session"],
+    "terminal_create_placement_values": [
+      "default",
+      "side_pane",
+      "bottom_pane",
+      "new_tab",
+      "background_session"
+    ],
     "terminal_create_result_fields": [
       "actual_placement",
       "backend",
       "terminal_id",
+      "warnings"
+    ],
+    "package_install_params_fields": [
+      "activation",
+      "digest",
+      "dry_run",
+      "package",
+      "reuse_key",
+      "source",
+      "version"
+    ],
+    "package_install_source_values": [
+      "registry",
+      "local_path"
+    ],
+    "package_activation_values": [
+      "none",
+      "enable",
+      "restart"
+    ],
+    "package_install_result_fields": [
+      "dry_run",
+      "effects",
+      "handle",
+      "install_id",
+      "package",
+      "plan",
+      "source",
+      "status",
+      "version",
+      "warnings"
+    ],
+    "resource_open_params_fields": [
+      "intent",
+      "kind",
+      "placement",
+      "reuse_key",
+      "title",
+      "uri"
+    ],
+    "resource_open_intent_values": [
+      "view",
+      "edit",
+      "read",
+      "inspect"
+    ],
+    "resource_open_kind_values": [
+      "markdown",
+      "code",
+      "text",
+      "diagram",
+      "image",
+      "ebook",
+      "pdf",
+      "directory",
+      "unknown"
+    ],
+    "resource_open_placement_values": [
+      "default",
+      "main_tab",
+      "side_pane",
+      "editor",
+      "background_session"
+    ],
+    "resource_open_result_fields": [
+      "actual_placement",
+      "backend",
+      "handle",
+      "resource_id",
       "warnings"
     ]
   }
