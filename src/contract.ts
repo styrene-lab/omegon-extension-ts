@@ -7,7 +7,7 @@
 
 import sdkContract from "./schema/sdk-contract.json";
 
-export const SDK_CONTRACT_VERSION = "0.24";
+export const SDK_CONTRACT_VERSION = "0.25";
 export const PROTOCOL_VERSION = 2;
 export const JSONRPC_VERSION = "2.0";
 
